@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record forcecreate="True" id="purchase_requisition_unit_price" model="decimal.precision">
+        <field name="name">PR Unit Price</field>
+        <field name="digits">3</field>
+    </record>
+
+
+</odoo>
