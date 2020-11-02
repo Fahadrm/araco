@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+         <record id="duplicate_phygi_pos_orders_inherited" model="ir.ui.view">
+               <field name="name">pos_phygi_order_view</field>
+                <field name="model">pos.order</field>
+                <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+                <field name="arch" type="xml">
+
+                    <xpath expr="//sheet/notebook/page[@name='extra']/group/group/field[@name='pos_reference']" position="after">
+
+                        <field name="order_type"/>
+                        <field name="update_status"/>
+                        <field name="ref_number"/>
+                    </xpath>
+
+                <xpath expr="//field[@name='lines']/tree/field[@name='product_id']" position="after">
+                    <field name="ecommerce_id"/>
+                </xpath>
+                </field>
+         </record>
+
+
+    </data>
+</odoo>

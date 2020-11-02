@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+
+        <record model="res.groups" id="group_sms_completed" >
+                <field name="name">Sms completed Stage</field>
+        </record>
+
+    </data>
+</odoo>

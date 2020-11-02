@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <record id="report_commission_report_wizard_view" model="ir.ui.view">
+            <field name="name">Commission Report</field>
+            <field name="model">commission.report</field>
+            <field name="arch" type="xml">
+                <form string="Report Options">
+                    <group col="4">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group col="4">
+                        <field name="operating_unit"/>
+                         <field name="company_id"/>
+                        <field name="own_target_move"/>
+                      <field name="not_own_target_move"/>
+                    </group>
+
+                    <footer>
+                        <button name="export_xls" type="object" default_focus="1"
+                                string="Excel Print" class="oe_highlight"/>
+                        or
+                        <button name="check_report" string="PDF Print" type="object"
+                                class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="report_action_commission_report_wizard" model="ir.actions.act_window">
+            <field name="name">Commission Report</field>
+            <field name="res_model">commission.report</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="report_commission_report_wizard_view"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_commission_report_wizard" name="Commission Report"
+                  parent="point_of_sale.menu_point_rep" action="report_action_commission_report_wizard"/>
+
+
+         <report
+            id="action_commission_report_xls"
+            model="pos.order"
+            string="Commission Report"
+            report_type="xlsx"
+            name="commission_report.action_commission_report_xls"
+            file="commission_report.action_commission_report_xls"
+
+        />
+
+    </data>
+</odoo>

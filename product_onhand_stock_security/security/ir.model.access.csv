@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_onhand_stock_security_product_onhand_stock_security,product_onhand_stock_security.product_onhand_stock_security,model_product_onhand_stock_security_product_onhand_stock_security,base.group_user,1,1,1,1

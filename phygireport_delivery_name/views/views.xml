@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+   <template id="studio_delivery_inherit" inherit_id="studio_customization.report_delivery_docu_058f5281-7fcc-4a03-88e2-45f3200190b7">
+
+<!--	    <xpath expr="//t/div[@t-field='o.partner_id']" position="replace">-->
+
+    <xpath expr="//t/t/t/div/div/div/div[@t-field='o.partner_id']" position="replace">
+                      		  <div>
+          <span t-field="o.partner_id.name" class="text-left o_bold"/>
+                  		<span t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True}' class="text-left o_bold"/>
+        </div>
+
+
+	    </xpath>
+
+        </template>
+  </data>
+</odoo>

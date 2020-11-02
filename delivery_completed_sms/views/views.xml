@@ -1,0 +1,58 @@
+
+<odoo>
+  <data>
+
+
+
+       <record id="sms_completed_state_action" model="ir.ui.view">
+            <field name="name">sms msg</field>
+            <field name="model">sms.completed.status</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                          <h1>Are you sure you want to send SMS?</h1>
+                            <!-- <field name="sms_state"/> -->
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="sms_update_state" string="Update" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+       <record id="sms_completed_action" model="ir.actions.act_window">
+        <field name="name">Update State</field>
+        <field name="res_model">sms.completed.status</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sms_completed_state_action"/>
+        <field name="target">new</field>
+    </record>
+
+
+      <menuitem id="sms_update_state_for_action_window" name="SMS stage"
+                  parent="stock.menu_stock_config_settings" action="sms_completed_action"/>
+
+
+
+
+      <act_window id="sms_stage_in_stock_picking"
+                  name="Complete Delivery"
+            res_model="sms.completed.status"
+            binding_model="stock.picking"
+                  binding_views="list"
+            view_mode="form"
+            target="new"
+
+        />
+
+
+
+
+
+  </data>
+</odoo>

@@ -1,0 +1,33 @@
+
+<odoo>
+  <data>
+
+
+
+ <record id="sms_stage_view_picking_form" model="ir.ui.view">
+        <field name="name">sms.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='other_infos']/field[@name='company_id']" position="after">
+                <field name="sms_state"/>
+            </xpath>
+        </field>
+ </record>
+
+
+
+      <record id="sms_stage_view_picking_tree" model="ir.ui.view">
+        <field name="name">sms.stock.picking.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="sms_state"/>
+            </xpath>
+        </field>
+ </record>
+
+
+  </data>
+</odoo>

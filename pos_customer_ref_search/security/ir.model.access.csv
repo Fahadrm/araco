@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_customer_ref_search,pos.mlm.orders,model_pos_mlm_orders,,1,1,1,1
+access_pos_customer_ref_line_search,pos.mlm.orders.line,model_pos_mlm_orders_line,,1,1,1,1

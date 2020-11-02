@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_commission_report">
+        <t t-call="web.html_container">
+            <!--<t t-set="data_report_margin_top" t-value="12"/>-->
+            <!--<t t-set="data_report_header_spacing" t-value="9"/>-->
+            <!--<t t-set="data_report_dpi" t-value="110"/>-->
+
+
+
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <style type="text/css">
+                        .tdCenter{text-align:center;padding: 5px;border:1px solid #000000;}
+                        .tdLeft{text-align:left;padding: 5px;border:1px solid #000000;}
+                        .tdRight{text-align:right;padding: 5px;border:1px solid #000000;}
+                        .bold{font-weight: bold; }
+                        .line-height35{line-height: 35px;}
+                        .blue{ background-color: #e2e8e8;}
+                        .bghead{background-color: #7b0b5b;color: #ffffff;}
+                        .bgcolor{background-color: #929393;color: #ffffff;}
+                    </style>
+                    <div class="row">
+
+                        <div class="col-xl-12"
+                             style="text-align: center;font-family:Calibri !important;">
+
+
+                            <t>
+                             <img t-att-src="'/commission_report/static/description/src/img/phygi.png'" class="center"
+                                     style="height: 80px;width: 80px;"/>
+
+<!--                                <img t-att-src="'/commission_report/static/description/src/img/phygi.png'"/>-->
+
+<!--                                <img src='/commission_report/static/description/src/img/phygi.png' style="max-height:180px;width: 180px;"/>-->
+
+<!--                                <img t-if="company"-->
+<!--                                     t-att-src="'data:image/png;base64,%s' %company" class="center"-->
+<!--                                     style="height: 80px;width: 80px;"/>-->
+                            </t>
+                            <br/>
+                            <span style="color:green;font-size:18px;font-weight: bold;">
+                                <t t-esc="company_name"/>
+                            </span>
+                            <br/>
+                            <span style="font-size:13px;font-weight: bold;">
+                                <t t-if="company_street">
+                                    <t t-esc="company_street"/>,
+                                </t>
+                                <t t-if="company_street2">
+                                    <t t-esc="company_street2"/>
+
+                                </t>
+
+                                <t t-if="company_city">
+                                    <br/>
+                                    <t t-esc="company_city"/>
+                                </t>
+
+                                <t t-if="company_state">
+                                    <br/>
+                                    <t t-esc="company_state"/>,
+                                </t>
+
+                                <t t-if="company_country">
+                                    <t t-esc="company_country"/>
+                                </t>
+                                <t t-if="company_email">
+                                    .EMAIL -
+                                    <t t-esc="company_email"/>
+                                </t>
+                            </span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xl-12"
+                             style="text-align: center;font-size:16px;font-family:Calibri !important;color:red;font-weight: bold;">
+                           Commission Report
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12" width="100%">
+                        <table cellpading="0" cellspacing="0" border="0" width="100%">
+
+                             <b style="font-size:18px;"> Start Date : <t t-esc="date_start"/> <![CDATA[&nbsp;]]>
+                                End Date : <t t-esc="date_end"/> </b>
+                           <br/><br/>
+
+                              <th style="width:10%;padding:3px;" align="left">Branch</th>
+                                <td>:<![CDATA[&nbsp;]]><t t-esc="operating_unit"/></td>
+
+                        </table>
+
+                    </div>
+
+                <t t-set="qtytotal" t-value="0.0"/>
+                     <t t-set="salestotal" t-value="0.0"/>
+                    <t t-set="store_commission" t-value="0.0"/>
+
+
+                    <!--<table class="table table-condensed">-->
+
+                    <!--<t t-if="target_move" >-->
+                        <table style="width:100%">
+                        <thead>
+                            <tr class="text-center">
+
+                                <th style="width:5%;padding:3px;" class="tdCenter bghead">Sl No.</th>
+                                <th style="width:30%;padding:3px;" class="tdCenter bghead">Product Name</th>
+                                <th style="width:10%;padding:3px;" class="tdCenter bghead">Sale Qty</th>
+                                <th style="width:12%;padding:3px;" class="tdCenter bghead">Selling Price</th>
+                                <th style="width:12%;padding:3px;" class="tdCenter bghead">Phygi store Commission</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            <t t-foreach="get_sale" t-as="line_ids" >
+                                        <tr style="page-break-inside: avoid;">
+                                            <td style="border: 1px solid black;border-collapse:collapse;text-align:center;padding:3px;">
+                                                <span t-esc="line_ids['sl_no']"/>
+                                            </td>
+                                            <td style="border: 1px solid black;border-collapse:collapse;padding:3px;">
+                                                <span t-esc="line_ids['product_name']"/>
+                                            </td>
+
+
+
+                                            <td style="border: 1px solid black;border-collapse:collapse;text-align:center;padding:3px;">
+                                                <span t-esc="'{0:,.2f}'.format(float(line_ids['qty']))"/>
+                                                <t t-set="qtytotal" t-value="qtytotal + line_ids['qty']" />
+
+                                            </td>
+
+                                             <td style="border: 1px solid black;border-collapse:collapse;padding:3px;text-align:center;">
+                                                <span t-esc="'{0:,.2f}'.format(float(line_ids['list_price']))"/>
+                                                 <t t-set="salestotal" t-value="salestotal + line_ids['list_price']" />
+                                            </td>
+
+
+                                            <td style="border: 1px solid black;border-collapse:collapse;text-align:center;padding:3px;">
+                                                <span t-esc="'{0:,.2f}'.format(float(line_ids['phygi_store_commission']))"/>
+                                                <t t-set="store_commission" t-value="store_commission + line_ids['phygi_store_commission']" />
+
+                                            </td>
+
+
+
+                                        </tr>
+
+                                    </t>
+                        <tr >
+
+                             <td colspan="2" style="text-align:center;border: 1px solid black;border-collapse:collapse;padding:3px;">
+                                <span><b>Total</b></span>
+                            </td>
+
+                             <td style="border: 1px solid black;border-collapse:collapse;text-align:center;padding:3px;">
+                                <b> <t t-esc="'{0:,.2f}'.format(float(qtytotal))" /></b>
+                            </td>
+                            <td style="border: 1px solid black;border-collapse:collapse;text-align:center;padding:3px;">
+                                <b> <t t-esc="'{0:,.2f}'.format(float(salestotal))" /></b>
+                            </td>
+                             <td style="border: 1px solid black;border-collapse:collapse;text-align:center;padding:3px;">
+                                <b> <t t-esc="'{0:,.2f}'.format(float(store_commission))" /></b>
+                            </td>
+
+
+
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_commission_report" model="ir.actions.report">
+        <field name="name">Commission Report</field>
+        <field name="model">report.commission_report.report_commission_report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">commission_report.report_commission_report</field>
+    </record>
+
+
+</odoo>

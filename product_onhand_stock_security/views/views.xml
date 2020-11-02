@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+  <data>
+
+
+     <record
+        id="ir_rule_stock_quant_allowed_picking_type_operating_units"
+        model="ir.rule"
+    >
+        <field name="model_id" ref="stock.model_stock_quant" />
+        <field name="domain_force">
+
+            ['|',
+            ('location_id.operating_unit_id','=',False),
+            ('location_id.operating_unit_id','in',user.operating_unit_ids.ids)
+            ]
+        </field>
+        <field name="name">Stock Quant from allowed picking types</field>
+        <field name="global" eval="True" />
+        <field eval="1" name="perm_unlink" />
+        <field eval="1" name="perm_write" />
+        <field eval="1" name="perm_read" />
+        <field eval="1" name="perm_create" />
+    </record>
+
+
+  </data>
+</odoo>
